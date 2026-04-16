@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 
+// update to handle converting other image file types to png
+// update to have option to remove background
+// what about trick to handle preserving transparency when converting heif to png? (my trick involves hypic)
+
 export default function ImageUploader() {
   const [images, setImages] = useState([]);
 
@@ -94,7 +98,7 @@ export default function ImageUploader() {
 
   return (
     <div className="d-flex gap-3 flex-column">
-      <h2>Remove empty space around & square your PNGs</h2>
+      {/* <h2>Remove empty space around & square your PNGs</h2> */}
       {imageInput}
       {images.map((img, i) => (
         <div className="p-3 border rounded" key={i}>
