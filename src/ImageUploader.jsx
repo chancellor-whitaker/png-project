@@ -94,7 +94,7 @@ export default function ImageUploader() {
 
   return (
     <div className="d-flex gap-3 flex-column">
-      <h1>Remove empty space around & square your PNGs</h1>
+      <h2>Remove empty space around & square your PNGs</h2>
       {imageInput}
       {images.map((img, i) => (
         <div className="p-3 border rounded" key={i}>
