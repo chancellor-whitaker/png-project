@@ -4,6 +4,22 @@ body {
     var(--bs-tertiary-bg-rgb),
     var(--bs-bg-opacity)
   ) !important;
+  overflow-y: scroll;
+  /* Path to your image */
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+    url("SSBU_Stage_HollowBastion_1.png");
+  /* background-image: url("SSBU_Stage_HollowBastion_1.png"); */
+  /* Stop the image from repeating */
+  background-repeat: no-repeat;
+  /* Scale image to cover the entire page */
+  background-size: cover;
+  /* Center the image */
+  background-position: center;
+  /* Keep image fixed when scrolling */
+  background-attachment: fixed;
+  background-color: rgba(255, 255, 255, 0.7);
+  /* background-blend-mode: lighten; */
 }
 
 h1,

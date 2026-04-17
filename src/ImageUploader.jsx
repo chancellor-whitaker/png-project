@@ -96,19 +96,37 @@ export default function ImageUploader() {
     </div>
   );
 
+  // function removeImage(index) {
+  //   setImages((prev) => {
+  //     const img = prev[index];
+
+  //     // Clean up URLs
+  //     if (img.original) URL.revokeObjectURL(img.original);
+  //     if (img.processed) URL.revokeObjectURL(img.processed);
+
+  //     // Remove from array
+  //     return prev.filter((_, i) => i !== index);
+  //   });
+  // }
+
   return (
-    <div className="d-flex gap-3 flex-column">
+    <>
       {/* <h2>Remove empty space around & square your PNGs</h2> */}
       {imageInput}
       {images.map((img, i) => (
-        <div className="p-3 border rounded" key={i}>
+        <div className="position-relative p-3 border rounded" key={i}>
+          {/* <button
+            className="btn-close position-absolute"
+            onClick={() => removeImage(i)}
+            type="button"
+          /> */}
           <div className="d-flex flex-wrap gap-3 justify-content-around">
             {renderOriginal(img)}
             {renderProcessed(img)}
           </div>
         </div>
       ))}
-    </div>
+    </>
   );
 }
 
