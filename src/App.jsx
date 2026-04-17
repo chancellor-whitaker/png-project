@@ -1,3 +1,5 @@
+import { useEffect, Fragment, useState } from "react";
+
 import { useLocalStorage } from "./useLocalStorage";
 import ImageUploader from "./ImageUploader";
 import Container from "./Container";
@@ -48,6 +50,24 @@ const tabs = [
 // as it stands, id must be string due to how local storage grabs stored state
 
 export default function App() {
+  const [iframeKey, setIframeKey] = useState(() => Math.random());
+
+  const refreshIframe = () => setIframeKey(() => Math.random());
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        refreshIframe();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
   const [tabId, setTabId] = useLocalStorage("tabId", `${tabs[0].id}`);
 
   const activeTab = tabs.find((tab) => `${tab.id}` === tabId);
@@ -86,7 +106,8 @@ export default function App() {
       <SubContainer>
         <div className="d-flex gap-3 flex-column">
           <div className={titleFlexClassName}>{subtitle}</div>
-          {content}
+
+          <Fragment key={iframeKey}>{content}</Fragment>
         </div>
       </SubContainer>
     </Container>
