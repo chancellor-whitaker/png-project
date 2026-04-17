@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 // update to handle converting other image file types to png
 // update to have option to remove background
 // what about trick to handle preserving transparency when converting heif to png? (my trick involves hypic)
 
-export default function ImageUploader() {
-  const [images, setImages] = useState([]);
-
+export default function ImageUploader({ setImages, images }) {
   // --- CLEANUP ALL OBJECT URLS ---
   useEffect(() => {
     return () => {

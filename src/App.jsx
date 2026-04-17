@@ -9,7 +9,6 @@ const { SubContainer } = Container;
 const tabs = [
   {
     subtitle: <h3>Trim, center, and square PNGs for sticker-ready uploads</h3>,
-    content: <ImageUploader></ImageUploader>,
     title: "Sticker Prep",
     id: 0,
   },
@@ -28,16 +27,6 @@ const tabs = [
         </div>
       </>
     ),
-    content: (
-      <>
-        <iframe
-          src="https://u.pcloud.link/publink/show?code=kZCKJE5ZUvqlBsC5PG5gThfwUmStUuPmG99X"
-          title="Requests"
-          height="500px"
-          width="100%"
-        />
-      </>
-    ),
     title: "Requests",
     id: 1,
   },
@@ -53,6 +42,20 @@ export default function App() {
   const [iframeKey, setIframeKey] = useState(() => Math.random());
 
   const refreshIframe = () => setIframeKey(() => Math.random());
+
+  const [images, setImages] = useState([]);
+
+  const idToContent = {
+    1: (
+      <iframe
+        src="https://u.pcloud.link/publink/show?code=kZCKJE5ZUvqlBsC5PG5gThfwUmStUuPmG99X"
+        title="Requests"
+        height="500px"
+        width="100%"
+      />
+    ),
+    0: <ImageUploader setImages={setImages} images={images}></ImageUploader>,
+  };
 
   useEffect(() => {
     const handleVisibilityChange = () => {
@@ -74,7 +77,7 @@ export default function App() {
 
   const [subtitle, content] = [
     activeTab ? activeTab.subtitle : "",
-    activeTab ? activeTab.content : <></>,
+    idToContent[tabId],
   ];
 
   const titleFlexClassName =
